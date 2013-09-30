@@ -1,0 +1,47 @@
+{
+    "builders": [
+        {
+            "type": "virtualbox",
+            "iso_checksum": "9379c1466b4b4d5c0a31a71f051dec7dae50e9d18379b58e5efd3ec59f8a6b40",
+            "iso_checksum_type": "sha256",
+            "iso_url": "http://ftp.freebsd.org/pub/FreeBSD/releases/amd64/amd64/ISO-IMAGES/9.2/FreeBSD-9.2-RC4-amd64-disc1.iso",
+            "ssh_username": "vagrant",
+            "boot_command": [
+                "<enter>",
+                "<wait10><wait5>",
+                "s",
+                "mkdir -p /tmp/bsdinstall_etc<enter>",
+                "dhclient em0<enter>",
+                "<wait5>",
+                "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/installerconfig.sh<enter>",
+                "<wait>",
+                "bsdinstall script /tmp/installerconfig<enter>",
+                "<wait10><wait10><wait10>",
+                "shutdown -r now<enter>"
+            ],
+            "guest_os_type": "FreeBSD_64",
+            "http_directory": "http",
+            "shutdown_command": "shutdown -p now",
+            "ssh_password": "vagrant"
+        }
+    ],
+
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/vm_cleanup.sh",
+            "override": {
+                "virtualbox": {
+                    "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
+                }
+            }
+        }
+    ],
+
+    "post-processors": [
+        {
+            "type": "vagrant",
+            "keep_input_artifact": true
+        }
+    ]
+}
