@@ -2,9 +2,9 @@
     "builders": [
         {
             "type": "virtualbox",
-            "iso_checksum": "9379c1466b4b4d5c0a31a71f051dec7dae50e9d18379b58e5efd3ec59f8a6b40",
+            "iso_checksum": "a8c1751b83646530148766618a89a97009e7500e7057a5cbe3afd74ef480c915",
             "iso_checksum_type": "sha256",
-            "iso_url": "http://ftp.freebsd.org/pub/FreeBSD/releases/amd64/amd64/ISO-IMAGES/9.2/FreeBSD-9.2-RC4-amd64-disc1.iso",
+            "iso_url": "http://ftp.freebsd.org/pub/FreeBSD/releases/amd64/amd64/ISO-IMAGES/9.2/FreeBSD-9.2-RELEASE-amd64-disc1.iso",
             "ssh_username": "vagrant",
             "boot_command": [
                 "<enter>",
